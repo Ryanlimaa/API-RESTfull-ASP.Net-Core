@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "dXvlm2C4MgQ=",
+  "success": true,
+  "projectFilePath": "C:\\C#\\API-RESTfull-ASP.Net-Core\\CadastroProdutos\\CadastroProdutos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ADM\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.13\\microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
+    "C:\\Users\\ADM\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
