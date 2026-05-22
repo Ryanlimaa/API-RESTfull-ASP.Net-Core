@@ -70,6 +70,12 @@ app.MapGet("/produtos/{id}", (int id) =>
         : Results.NotFound($"Produto com ID {id} não encontrado.");*/
 });
 
+app.MapPost("/produtos", (Produto novoProduto) => 
+{
+    produtos.Add(novoProduto);
+    return Results.Ok("Produto criado com sucesso");
+});
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
