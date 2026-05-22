@@ -42,9 +42,28 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/test", () => "Esse é um endpoint de teste");
 
+var produtos = new List<Produto>()
+{
+    new Produto() {Id = 1, Nome = "Mouse sem Fio", Preco = 99.90, Estoque = 50},
+    new Produto() {Id = 2, Nome = "Telcado", Preco = 249.90, Estoque = 30}
+};
+
+app.MapGet("/produtos", () =>
+{
+    return produtos;
+});
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
+
+class Produto
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public double Preco { get; set; }
+    public int Estoque { get; set; }
 }
