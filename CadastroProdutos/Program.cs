@@ -71,7 +71,7 @@ app.MapPost("/produtos", (Produto novoProduto) =>
     return Results.Ok("Produto criado com sucesso");
 });
 
-// Método para atualizar produtos
+// Método para atualizar um produto
 app.MapPut("/produtos/{id}", (int id, Produto prodAtualizado) =>
 {
     var produto = produtos.FirstOrDefault(x => x.Id == id);
@@ -86,6 +86,21 @@ app.MapPut("/produtos/{id}", (int id, Produto prodAtualizado) =>
     produto.Estoque = prodAtualizado.Estoque;
 
     return Results.Ok(produto);
+});
+
+// Método para excluir um produto
+app.MapDelete("/produtos/{id}", (int id) =>
+{
+    var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+    if (produto is null)
+    {
+        return Results.NotFound($"Produto com ID {id} não encontrado.");
+    }
+
+    produtos.Remove(produto);
+
+    return Results.Ok("Produto excluido com sucesso!");
 });
 
 app.Run();
