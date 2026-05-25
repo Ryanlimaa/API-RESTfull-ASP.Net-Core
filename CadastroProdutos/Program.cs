@@ -48,32 +48,44 @@ var produtos = new List<Produto>()
     new Produto() {Id = 2, Nome = "Telcado", Preco = 249.90, Estoque = 30}
 };
 
+// Método para listar os produtos
 app.MapGet("/produtos", () =>
 {
     return produtos;
 });
 
+// Método para buscar os produtos por id
 app.MapGet("/produtos/{id}", (int id) =>
 {
     var produto = produtos.FirstOrDefault(x => x.Id == id);
 
-    if(produto is not null)
-    {
-        return Results.Ok(produto);
-    }
-    else
-    {
-        return Results.NotFound($"Produto com ID {id} não encontrado.");
-    }
-    /*return produto is not null
+    return produto is not null
         ? Results.Ok(produto)
-        : Results.NotFound($"Produto com ID {id} não encontrado.");*/
+        : Results.NotFound($"Produto com ID {id} não encontrado.");
 });
 
+// Método para inserir um novo produto
 app.MapPost("/produtos", (Produto novoProduto) => 
 {
     produtos.Add(novoProduto);
     return Results.Ok("Produto criado com sucesso");
+});
+
+// Método para atualizar produtos
+app.MapPut("/produtos/{id}", (int id, Produto prodAtualizado) =>
+{
+    var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+    if(produto is null)
+    {
+        return Results.NotFound($"Produto com ID {id} não encontrado.");
+    }
+
+    produto.Nome = prodAtualizado.Nome;
+    produto.Preco = prodAtualizado.Preco;
+    produto.Estoque = prodAtualizado.Estoque;
+
+    return Results.Ok(produto);
 });
 
 app.Run();
