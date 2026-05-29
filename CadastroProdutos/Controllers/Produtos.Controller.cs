@@ -18,5 +18,18 @@ namespace CadastroProdutos.controllers
         {
             return Ok(produtos);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Produto> GetById(int id)
+        {
+            var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+            if (produto is null)
+            {
+                return NotFound($"Produto com ID {id} não encontrado");
+            }
+
+            return Ok(produto);
+        }
     }
 }
