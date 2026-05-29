@@ -4,11 +4,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Adicionando Endpoints depois de instalar o Swagger
+// Adicionando métodos para trabalhar com controllers
+builder.Services.AddControllers();
+
+// Adicionando métodos para adicionar Endpoints depois de instalar o Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Adicionando mapeamento para controllers
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -110,7 +116,7 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
 
-class Produto
+public class Produto
 {
     public int Id { get; set; }
     public string Nome { get; set; }
