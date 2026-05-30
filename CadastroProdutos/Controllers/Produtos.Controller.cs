@@ -60,5 +60,21 @@ namespace CadastroProdutos.controllers
 
             return Ok(produto);
         }
+        
+        // Método para excluir um produto
+        [HttpDelete("/{id}")]
+        public ActionResult<Produto> Delete(int id)
+        {
+            var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+            if (produto is null)
+            {
+                return NotFound($"Produto com ID {id} não encontrado");
+            }
+            
+            produtos.Remove(produto);
+
+            return Ok("Produto excluido com sucesso!");
+        }
     }
 }
