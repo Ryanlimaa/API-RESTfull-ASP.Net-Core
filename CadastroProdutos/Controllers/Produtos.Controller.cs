@@ -13,12 +13,14 @@ namespace CadastroProdutos.controllers
             new Produto() {Id = 2, Nome = "Telcado", Preco = 249.90, Estoque = 30}
         };
 
+        // Método para listar os produtos
         [HttpGet]
         public ActionResult<List<Produto>> Get()
         {
             return Ok(produtos);
         }
 
+        // Método para buscar os produtos por id
         [HttpGet("{id}")]
         public ActionResult<Produto> GetById(int id)
         {
@@ -32,12 +34,31 @@ namespace CadastroProdutos.controllers
             return Ok(produto);
         }
 
+        // Método para inserir um novo produto
         [HttpPost]
         public ActionResult Post(Produto novoProduto)
         {
             produtos.Add(novoProduto);
 
             return Ok("Produto criado com sucesso!");
+        }
+
+        // Método para atualizar um produto
+        [HttpPut("{id}")]
+        public ActionResult<Produto> Put(int id, Produto prodAtualizado)
+        {
+            var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+            if (produto is null)
+            {
+                return NotFound($"Produto com ID {id} não encontrado");
+            }
+
+            produto.Nome = prodAtualizado.Nome;
+            produto.Preco = prodAtualizado.Preco;
+            produto.Estoque = prodAtualizado.Estoque;
+
+            return Ok(produto);
         }
     }
 }
