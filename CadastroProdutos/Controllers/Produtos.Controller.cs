@@ -7,7 +7,7 @@ namespace CadastroProdutos.controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private List<Produto> produtos = new List<Produto>()
+        private static List<Produto> produtos = new List<Produto>()
         {
             new Produto() {Id = 1, Nome = "Mouse sem Fio", Preco = 99.90, Estoque = 50},
             new Produto() {Id = 2, Nome = "Telcado", Preco = 249.90, Estoque = 30}
@@ -30,6 +30,14 @@ namespace CadastroProdutos.controllers
             }
 
             return Ok(produto);
+        }
+
+        [HttpPost]
+        public ActionResult Post(Produto novoProduto)
+        {
+            produtos.Add(novoProduto);
+
+            return Ok("Produto criado com sucesso!");
         }
     }
 }
