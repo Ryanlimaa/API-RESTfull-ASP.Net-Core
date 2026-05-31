@@ -8,7 +8,13 @@ namespace CadastroProdutos.controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private IProdutosService prodServ = new ProdutosService(); 
+        private IProdutosService prodServ; 
+
+        public ProdutosController(IProdutosService produtosService)
+        {
+            prodServ = produtosService;
+        }
+        
         // Método para listar os produtos
         [HttpGet]
         public ActionResult<List<Produto>> Get()

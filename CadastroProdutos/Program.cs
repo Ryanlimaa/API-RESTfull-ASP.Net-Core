@@ -1,3 +1,5 @@
+using CadastroProdutos.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +12,9 @@ builder.Services.AddControllers();
 // Adicionando métodos para adicionar Endpoints depois de instalar o Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Registrando a interface para injeção de dependência
+builder.Services.AddScoped<IProdutosService, ProdutosService>();
 
 var app = builder.Build();
 
