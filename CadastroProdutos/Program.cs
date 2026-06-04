@@ -1,4 +1,6 @@
+using CadastroProdutos.Database;
 using CadastroProdutos.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,13 @@ builder.Services.AddSwaggerGen();
 
 // Registrando a interface para injeção de dependência
 builder.Services.AddScoped<IProdutosService, ProdutosService>();
+
+// Configurando a string de conexão para o banco de dados MySQL, obtendo-a do appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DataBase");
+
+// Registrando o repositório de usuário e tarefas para injeção de dependência, permitindo que ele seja utilizado em outras partes da aplicação, como nos controladores, para acessar os dados no banco de dados
+builder.Services.AddDbContext<ApplicationDbContext>(options => 
+options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 
