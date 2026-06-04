@@ -10,6 +10,7 @@ namespace CadastroProdutos.controllers
     {
         private IProdutosService prodServ; 
 
+        // Inserindo injeção de dependencia
         public ProdutosController(IProdutosService produtosService)
         {
             prodServ = produtosService;
