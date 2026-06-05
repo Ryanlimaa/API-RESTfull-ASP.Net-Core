@@ -49,6 +49,17 @@ public class ProdutosDatabaseService : IProdutosService
 
     public bool Remover(int id)
     {
-        throw new NotImplementedException();
+        var produto = context.Produtos.FirstOrDefault(x => x.Id == id);
+
+        if (produto is null)
+        {
+            return false;
+        }
+
+        context.Produtos.Remove(produto);
+
+        context.SaveChanges();
+
+        return true;
     }
 }
