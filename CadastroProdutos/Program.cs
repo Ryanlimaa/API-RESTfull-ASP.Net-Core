@@ -16,7 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Registrando a interface para injeção de dependência
-builder.Services.AddScoped<IProdutosService, ProdutosService>();
+// builder.Services.AddScoped<IProdutosService, ProdutosService>();
+builder.Services.AddScoped<IProdutosService, ProdutosDatabaseService>();
 
 // Configurando a string de conexão para o banco de dados MySQL, obtendo-a do appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DataBase");
