@@ -26,7 +26,7 @@ public class ProdutosDatabaseService : IProdutosService
 
     public Produto ObterPorId(int id)
     {
-        throw new NotImplementedException();
+        return context.Produtos.FirstOrDefault(x => x.Id == id);
     }
 
     public List<Produto> ObterTodos()
