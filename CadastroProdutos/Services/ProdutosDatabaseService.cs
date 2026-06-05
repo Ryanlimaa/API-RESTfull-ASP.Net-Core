@@ -21,7 +21,20 @@ public class ProdutosDatabaseService : IProdutosService
 
     public Produto Atualizar(int id, Produto prodAtualizado)
     {
-        throw new NotImplementedException();
+        var produto = context.Produtos.FirstOrDefault(x => x.Id == id);
+
+        if (produto is null)
+        {
+            return null;
+        }
+
+        produto.Nome = prodAtualizado.Nome;
+        produto.Preco = prodAtualizado.Preco;
+        produto.Estoque = prodAtualizado.Estoque;
+
+        context.SaveChanges();
+
+        return produto;
     }
 
     public Produto ObterPorId(int id)
