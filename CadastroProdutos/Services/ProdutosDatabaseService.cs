@@ -31,7 +31,7 @@ public class ProdutosDatabaseService : IProdutosService
 
     public List<Produto> ObterTodos()
     {
-        throw new NotImplementedException();
+        return context.Produtos.ToList();
     }
 
     public bool Remover(int id)
