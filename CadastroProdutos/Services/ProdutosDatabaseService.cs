@@ -15,12 +15,14 @@ public class ProdutosDatabaseService : IProdutosService
     }
     public void Adicionar(Produto novoProduto)
     {
+        ValidarProdutos(novoProduto);
         context.Produtos.Add(novoProduto);
         context.SaveChanges();
     }
 
     public Produto Atualizar(int id, Produto prodAtualizado)
     {
+        ValidarProdutos(prodAtualizado);
         var produto = context.Produtos.FirstOrDefault(x => x.Id == id);
 
         if (produto is null)
@@ -61,5 +63,19 @@ public class ProdutosDatabaseService : IProdutosService
         context.SaveChanges();
 
         return true;
+    }
+
+    // Regras de negócio
+    private void ValidarProdutos(Produto prod)
+    {
+        if (prod.Nome == "Produto Padrão")
+        {
+            throw new Exception("Não é permitido cadastrar um produto com o nome: Produto Padrão!");
+        }
+
+        if (prod.Estoque > 1000)
+        {
+            throw new Exception("O estoque não pode ser maior que 1000 unidades!");
+        }
     }
 }

@@ -8,14 +8,14 @@ namespace CadastroProdutos.controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private IProdutosService prodServ; 
+        private IProdutosService prodServ;
 
         // Inserindo injeção de dependencia
         public ProdutosController(IProdutosService produtosService)
         {
             prodServ = produtosService;
         }
-        
+
         // Método para listar os produtos
         [HttpGet]
         public ActionResult<List<Produto>> Get()
@@ -41,25 +41,39 @@ namespace CadastroProdutos.controllers
         [HttpPost]
         public ActionResult Post(Produto novoProduto)
         {
-            prodServ.Adicionar(novoProduto);
+            try
+            {
+                prodServ.Adicionar(novoProduto);
 
-            return Ok("Produto criado com sucesso!");
+                return Ok("Produto criado com sucesso!");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // Método para atualizar um produto
         [HttpPut("{id}")]
         public ActionResult<Produto> Put(int id, Produto prodAtualizado)
         {
-            var produto = prodServ.Atualizar(id, prodAtualizado);
-
-            if (produto is null)
+            try
             {
-                return NotFound($"Produto com ID {id} não encontrado");
-            }
+                var produto = prodServ.Atualizar(id, prodAtualizado);
 
-            return Ok(produto);
+                if (produto is null)
+                {
+                    return NotFound($"Produto com ID {id} não encontrado");
+                }
+
+                return Ok(produto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
-        
+
         // Método para excluir um produto
         [HttpDelete("/{id}")]
         public ActionResult<Produto> Delete(int id)
