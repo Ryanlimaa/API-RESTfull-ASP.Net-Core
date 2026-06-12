@@ -131,3 +131,11 @@ C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\ru\Microsoft.C
 C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\C#\API-RESTfull-ASP.Net-Core\CadastroProdutos\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
