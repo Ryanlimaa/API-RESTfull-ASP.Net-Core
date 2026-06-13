@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 using CadastroProdutos.Database;
+using CadastroProdutos.Models;
 using CadastroProdutos.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -98,25 +99,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
 app.MapGet("/test", () => "Esse é um endpoint de teste");
 
 var produtos = new List<Produto>()
@@ -181,31 +163,3 @@ app.MapDelete("/produtos/{id}", (int id) =>
 });
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
-
-public class Produto
-{
-    public int Id { get; set; }
-
-    [Required(ErrorMessage = "O nome é obrigatório!")]
-    [StringLength(60, MinimumLength = 3, ErrorMessage = "O nome deve conter entre 3 e 60 caracteres!")]
-    public string Nome { get; set; }
-
-    [Range(0.01, double.MaxValue, ErrorMessage = "O preço deve ser maior que zero!")]
-    public double Preco { get; set; }
-
-    [Range(0, int.MaxValue, ErrorMessage = "O estoque não pode ser negativo!")]
-    public int Estoque { get; set; }
-}
-
-public class Login
-{
-    [Required]
-    public string Usuario { get; set; }
-    [Required]
-    public string Senha { get; set; }
-}

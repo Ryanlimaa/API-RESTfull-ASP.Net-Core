@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using CadastroProdutos.Database;
+using CadastroProdutos.Models;
 
 namespace CadastroProdutos.Services;
 

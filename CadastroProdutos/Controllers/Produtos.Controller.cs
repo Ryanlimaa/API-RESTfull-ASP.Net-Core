@@ -2,10 +2,11 @@ using CadastroProdutos.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CadastroProdutos.Models;
 
 namespace CadastroProdutos.controllers
 {
-    [Authorize] // para altenticação do jwt
+    [Authorize] // para autenticação do jwt
 
     [Route("api/[controller]")]
     [ApiController]
