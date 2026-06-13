@@ -1,9 +1,12 @@
 using CadastroProdutos.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroProdutos.controllers
 {
+    [Authorize] // para altenticação do jwt
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutosController : ControllerBase
@@ -37,6 +40,7 @@ namespace CadastroProdutos.controllers
             return Ok(produto);
         }
 
+        [Authorize(Roles = "admin")] // Só administaradores tem acesso
         // Método para inserir um novo produto
         [HttpPost]
         public ActionResult Post(Produto novoProduto)
@@ -53,6 +57,7 @@ namespace CadastroProdutos.controllers
             }
         }
 
+        [Authorize(Roles = "admin")] // Só administaradores tem acesso
         // Método para atualizar um produto
         [HttpPut("{id}")]
         public ActionResult<Produto> Put(int id, Produto prodAtualizado)
@@ -74,6 +79,7 @@ namespace CadastroProdutos.controllers
             }
         }
 
+        [Authorize(Roles = "admin")] // Só administaradores tem acesso
         // Método para excluir um produto
         [HttpDelete("/{id}")]
         public ActionResult<Produto> Delete(int id)
